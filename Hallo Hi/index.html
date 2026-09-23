@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hallo, Hi</title>
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f5fa;
+            color: #111;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        .navbar {
+            width: 100%;
+            height: 46px;
+
+            background: #716fda;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 65px;
+
+            color: white;
+
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-link,
+        .service {
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .service:hover {
+            opacity: 0.85;
+        }
+
+
+        /* =========================================================
+           SERVICE DROPDOWN
+        ========================================================= */
+
+        .service-dropdown {
+            position: absolute;
+
+            top: 46px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 136px;
+
+            padding: 8px 14px 15px;
+
+            background: #7775dc;
+
+            border-radius: 0 0 28px 28px;
+
+            display: none;
+
+            font-size: 12px;
+            line-height: 19px;
+
+            z-index: 200;
+        }
+
+        .service-dropdown a {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .service-dropdown a:hover {
+            text-decoration: underline;
+        }
+
+        .service:hover .service-dropdown {
+            display: block;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            width: 100%;
+            height: 302px;
+
+            background: #000;
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        /* Purple circle in top right */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 390px;
+            height: 390px;
+
+            right: -10px;
+            top: -245px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #742cff,
+                #7040df
+            );
+        }
+
+
+        .hero-container {
+            width: 650px;
+            max-width: calc(100% - 70px);
+
+            height: 100%;
+
+            margin: auto;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .hero-content {
+            width: 54%;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-bars {
+            display: flex;
+
+            gap: 5px;
+
+            margin-bottom: 8px;
+        }
+
+        .logo-bars span {
+            display: block;
+
+            width: 12px;
+            height: 5px;
+
+            background: #a000ff;
+        }
+
+        .logo-bars span:nth-child(2),
+        .logo-bars span:nth-child(3) {
+            background: #8a88dc;
+        }
+
+
+        .logo {
+            font-size: 49px;
+
+            line-height: 1;
+
+            letter-spacing: -3px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+        }
+
+
+        /* Hi speech bubble */
+
+        .hi-bubble {
+            width: 45px;
+            height: 39px;
+
+            border: 3px solid #00eec8;
+
+            border-radius: 50%;
+
+            color: #00eec8;
+
+            font-size: 16px;
+            letter-spacing: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            top: -7px;
+        }
+
+        .hi-bubble::after {
+            content: "";
+
+            position: absolute;
+
+            width: 9px;
+            height: 10px;
+
+            border-left: 3px solid #00eec8;
+            border-bottom: 3px solid #00eec8;
+
+            bottom: -6px;
+            left: 3px;
+
+            transform: rotate(-25deg);
+
+            background: black;
+        }
+
+
+        /* =========================================================
+           HERO TEXT
+        ========================================================= */
+
+        .hero-text {
+            font-size: 13px;
+
+            line-height: 20px;
+
+            max-width: 310px;
+
+            margin-top: 22px;
+        }
+
+
+        /* =========================================================
+           HERO BUTTONS
+        ========================================================= */
+
+        .hero-buttons {
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 22px;
+        }
+
+        .button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 25px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+        .button-outline {
+            border: 1px solid white;
+
+            background: transparent;
+
+            color: white;
+        }
+
+        .button-outline:hover {
+            background: white;
+            color: black;
+        }
+
+        .button-purple {
+            background: #9200ff;
+
+            border: 1px solid #9200ff;
+
+            color: white;
+        }
+
+        .button-purple:hover {
+            background: #ae32ff;
+        }
+
+
+        /* =========================================================
+           PHONE AREA
+        ========================================================= */
+
+        .phone-area {
+            position: absolute;
+
+            width: 220px;
+            height: 240px;
+
+            right: 15px;
+            top: 52px;
+
+            z-index: 10;
+        }
+
+
+        /* Purple glow */
+
+        .phone-glow {
+            position: absolute;
+
+            width: 160px;
+            height: 200px;
+
+            right: 15px;
+            top: 5px;
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    #4058d8 0%,
+                    #182f83 30%,
+                    #090b20 70%
+                );
+
+            filter: blur(3px);
+
+            box-shadow:
+                0 0 35px #4536ba,
+                inset 0 0 25px #5d5fff;
+        }
+
+
+        /* Phone */
+
+        .phone {
+            position: absolute;
+
+            width: 110px;
+            height: 190px;
+
+            right: 16px;
+            top: 4px;
+
+            border-radius: 17px;
+
+            border: 3px solid #080815;
+
+            background:
+                radial-gradient(
+                    circle at 55% 25%,
+                    #5f75ff,
+                    #18358b 35%,
+                    #060b25 72%
+                );
+
+            box-shadow:
+                0 5px 30px rgba(90, 70, 255, 0.5);
+        }
+
+
+        /* Phone inner glass */
+
+        .phone::before {
+            content: "";
+
+            position: absolute;
+
+            width: 78px;
+            height: 75px;
+
+            left: 13px;
+            top: 35px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #6e8aff,
+                    #18388f 45%,
+                    transparent 70%
+                );
+        }
+
+
+        .phone::after {
+            content: "";
+
+            position: absolute;
+
+            width: 75px;
+            height: 75px;
+
+            left: 14px;
+            bottom: 28px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #5b76ff,
+                    #18388f 45%,
+                    transparent 72%
+                );
+        }
+
+
+        /* Phone side */
+
+        .phone-side {
+            position: absolute;
+
+            width: 5px;
+            height: 70px;
+
+            background: #16172c;
+
+            right: -5px;
+            top: 35px;
+
+            border-radius: 0 5px 5px 0;
+        }
+
+
+        /* SIM card */
+
+        .sim {
+            position: absolute;
+
+            width: 21px;
+            height: 33px;
+
+            background: #eee9c5;
+
+            border: 1px solid #999;
+
+            border-radius: 2px;
+
+            bottom: 7px;
+            left: 30px;
+
+            z-index: 20;
+        }
+
+        .sim::after {
+            content: "";
+
+            position: absolute;
+
+            width: 11px;
+            height: 13px;
+
+            left: 4px;
+            top: 8px;
+
+            border: 1px solid #a79c58;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 3px,
+                    #aaa05d 3px,
+                    #aaa05d 4px
+                );
+        }
+
+
+        /* =========================================================
+           SUPER DEAL
+        ========================================================= */
+
+        .deal {
+            position: absolute;
+
+            width: 73px;
+            height: 73px;
+
+            border-radius: 50%;
+
+            left: -20px;
+            bottom: 48px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #b000ff,
+                    #7100ff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            font-size: 15px;
+            line-height: 15px;
+
+            transform: rotate(-13deg);
+
+            z-index: 30;
+        }
+
+
+        /* =========================================================
+           SECOND SECTION
+        ========================================================= */
+
+        .mobile-tv {
+            width: 100%;
+
+            min-height: 399px;
+
+            background: #f5f6fb;
+
+            display: flex;
+            align-items: center;
+        }
+
+
+        .mobile-tv-container {
+            width: 650px;
+            max-width: calc(100% - 70px);
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 40px;
+        }
+
+
+        /* =========================================================
+           SECOND SECTION TEXT
+        ========================================================= */
+
+        .mobile-copy {
+            width: 57%;
+        }
+
+        .mobile-copy h2 {
+            font-size: 27px;
+
+            line-height: 1.15;
+
+            font-weight: normal;
+
+            letter-spacing: -0.5px;
+
+            margin-bottom: 15px;
+        }
+
+        .mobile-copy p {
+            font-size: 13px;
+
+            line-height: 18px;
+
+            margin-bottom: 16px;
+        }
+
+
+        /* =========================================================
+           BENEFITS
+        ========================================================= */
+
+        .benefits {
+            list-style: none;
+
+            font-size: 13px;
+
+            line-height: 19px;
+
+            margin-top: 5px;
+
+            margin-bottom: 23px;
+        }
+
+        .benefits li::before {
+            content: "+ ";
+
+        }
+
+
+        
+
+        .black-button {
+            display: inline-block;
+
+            background: black;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 20px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .black-button:hover {
+            background: #333;
+        
+
+
+        .woman-area {
+            width: 235px;
+            height: 286px;
+
+            position: relative;
+
+            flex-shrink: 0;
+        }
+
+
+        /* Purple back shape */
+
+        .woman-purple {
+            position: absolute;
+
+            width: 215px;
+            height: 270px;
+
+            left: 0;
+            top: 0;
+
+            background: #8d00ff;
+
+            border-radius: 20px 20px 0 20px;
+        }
+
+
+        /* Blue back shape */
+
+        .woman-blue {
+            position: absolute;
+
+            width: 215px;
+            height: 270px;
+
+            left: 20px;
+            top: 13px;
+
+            background: #686fdd;
+
+            border-radius: 20px 20px 20px 0;
+
+            z-index: 1;
+        }
+
+
+        /* Woman image */
+
+        .woman-image {
+            position: absolute;
+
+            left: 13px;
+            top: 13px;
+
+            width: 205px;
+            height: 270px;
+
+            object-fit: cover;
+
+            border-radius: 18px 18px 18px 0;
+
+            z-index: 2;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #79d7ef,
+                    #ef684c
+                );
+        }
+
+
+
+        
+           If you have the original woman image, replace:
+
+           src="woman.jpg"
+
+           with your own image filename.
+
+           Example:
+
+           <img src="woman.jpg">
+
+        */
+
+
+        
+        @media (max-width: 760px) {
+
+            .navbar {
+                gap: 25px;
+            }
+
+            .hero-container,
+            .mobile-tv-container {
+                width: 92%;
+                max-width: 650px;
+            }
+
+            .phone-area {
+                right: -10px;
+
+                transform: scale(0.82);
+
+                transform-origin: right center;
+            }
+
+            .hero-content {
+                width: 62%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: auto;
+
+                min-height: 50px;
+
+                padding: 8px 12px;
+
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                font-size: 12px;
+            }
+
+            .nav-link,
+            .service {
+                height: 30px;
+            }
+
+            .service-dropdown {
+                top: 30px;
+            }
+
+
+            /* Hero */
+
+            .hero {
+                height: 500px;
+            }
+
+            .hero-container {
+                height: 500px;
+
+                padding-top: 40px;
+
+                align-items: flex-start;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .logo {
+                font-size: 42px;
+            }
+
+            .hero-text {
+                max-width: 300px;
+            }
+
+            .phone-area {
+                top: 270px;
+
+                right: 50%;
+
+                transform:
+                    translateX(50%)
+                    scale(0.75);
+            }
+
+
+            /* Second section */
+
+            .mobile-tv {
+                padding: 50px 0;
+            }
+
+            .mobile-tv-container {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .mobile-copy {
+                width: 100%;
+            }
+
+            .woman-area {
+                align-self: center;
+            }
+        }
+
+
+        /* =========================================================
+           VERY SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width: 400px) {
+
+            .navbar {
+                gap: 10px;
+
+                justify-content: space-around;
+            }
+
+            .logo {
+                font-size: 37px;
+            }
+
+            .hero-buttons {
+                gap: 8px;
+            }
+
+            .button {
+                padding: 9px 17px;
+            }
+
+            .mobile-copy h2 {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
+    <nav class="navbar">
+
+        <a href="#hero" class="nav-link">
+            Internet + Bellen
+        </a>
+
+        <a href="#mobile-tv" class="nav-link">
+            Mobiel
+        </a>
+
+        <a href="#mobile-tv" class="nav-link">
+            Entertainment
+        </a>
+
+        <div class="service">
+
+            Service
+
+            <div class="service-dropdown">
+
+                <a href="#">
+                    Hulp nodig?
+                </a>
+
+                <a href="#">
+                    Hulp met Internet
+                </a>
+
+                <a href="#">
+                    Hulp met Mobiel
+                </a>
+
+                <a href="#">
+                    Hulp met TV
+                </a>
+
+                <a href="#">
+                    Abonnement wijzigen
+                </a>
+
+                <a href="#">
+                    Overstappen
+                </a>
+
+                <a href="#">
+                    Storing melden
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================== -->
+
+    <section class="hero" id="hero">
+
+        <div class="hero-container">
+
+
+            <!-- Hero content -->
+
+            <div class="hero-content">
+
+
+                <!-- Small logo bars -->
+
+                <div class="logo-bars">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <!-- Logo -->
+
+                <div class="logo">
+
+                    Hallo,
+
+                    <span class="hi-bubble">
+                        Hi
+                    </span>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <p class="hero-text">
+
+                    Internet + Bellen van Hallo Hi<br>
+
+                    Kies uit Sim Only of een telefoon met abonnement
+                    van Hallo Hi en ontvang tijdelijk € 145 voordeel.
+
+                </p>
+
+
+                <!-- Buttons -->
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#mobile-tv"
+                        class="button button-outline"
+                    >
+                        Bekijk deal
+                    </a>
+
+                    <a
+                        href="#mobile-tv"
+                        class="button button-purple"
+                    >
+                        Ontdek meer
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PHONE / DEAL
+            ================================================== -->
+
+            <div class="phone-area">
+
+                <div class="phone-glow"></div>
+
+                <div class="phone">
+
+                    <div class="phone-side"></div>
+
+                </div>
+
+                <div class="sim"></div>
+
+                <div class="deal">
+
+                    SUPER<br>
+                    DEAL
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         MOBILE + TV SECTION
+    ========================================================== -->
+
+    <section class="mobile-tv" id="mobile-tv">
+
+        <div class="mobile-tv-container">
+
+
+            <!-- Text -->
+
+            <div class="mobile-copy">
+
+                <h2>
+                    Het beste van Mobiel en TV.
+                </h2>
+
+
+                <p>
+
+                    Geen aansluitkosten en volop extra voordelen.<br>
+
+                    Ontdek TV &amp; Streaming op één plek.
+                    En switch gemakkelijk tussen je favoriete
+                    tv-zenders, streamingdiensten en huurfims.
+
+                </p>
+
+
+                <p>
+
+                    Stap je over? Geen enkel probleem.
+                    Gratis nummerbehoud.<br>
+
+                    Jij vraagt het aan, wij regelen de rest.
+
+                </p>
+
+
+                <!-- Benefits -->
+
+                <ul class="benefits">
+
+                    <li>
+                        Onbeperkt data
+                    </li>
+
+                    <li>
+                        39,95/mnd
+                    </li>
+
+                    <li>
+                        Snelheid tot 1 Gbit/s
+                    </li>
+
+                    <li>
+                        Stel zelf je pakket samen
+                    </li>
+
+                </ul>
+
+
+                <!-- Button -->
+
+                <a
+                    href="#"
+                    class="black-button"
+                >
+                    Ontdek Mobiel en TV
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IMAGE
+            ================================================== -->
+
+            <div class="woman-area">
+
+                <div class="woman-purple"></div>
+
+                <div class="woman-blue"></div>
+
+
+                <!--
+                    Replace "woman.jpg" with your own image.
+
+                    Example:
+
+                    <img
+                        src="woman.jpg"
+                        class="woman-image"
+                    >
+                -->
+
+                <img
+                    src="woman.jpg"
+                    alt="Vrouw met telefoon"
+                    class="woman-image"
+                >
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+</body>
+</html>
